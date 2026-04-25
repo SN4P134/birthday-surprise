@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Favorite Person ❤️</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
+
+    .container {
+        text-align: center;
+        color: #fff;
+        max-width: 400px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    #text {
+        font-size: 1.2em;
+        min-height: 60px;
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        background: white;
+        color: #ff5e78;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    #noBtn {
+        position: absolute;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .heart {
+        position: absolute;
+        color: white;
+        font-size: 20px;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+        from { transform: translateY(100vh); opacity: 1; }
+        to { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Happy Birthday ❤️</h1>
+    <div id="text"></div>
+
+    <div id="buttons" class="hidden">
+        <p>Do you love me?</p>
+        <button onclick="yes()">Yes 😍</button>
+        <button id="noBtn" onmouseover="moveNo()">No 😏</button>
+    </div>
+</div>
+
+<script>
+const message = "Hey loveeeee... naa pa kay utang kiss ako ha, I love youuuu!!";
+let i = 0;
+
+function typeEffect() {
+    if (i < message.length) {
+        document.getElementById("text").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeEffect, 50);
+    } else {
+        document.getElementById("buttons").classList.remove("hidden");
+    }
+}
+
+typeEffect();
+
+function moveNo() {
+    const btn = document.getElementById("noBtn");
+    btn.style.top = Math.random() * window.innerHeight + "px";
+    btn.style.left = Math.random() * window.innerWidth + "px";
+}
+
+function yes() {
+    document.querySelector(".container").innerHTML =
+        "<h1>Di pwede mag no nu? alangan, dapat love ko nimo</h1><p>You make my life so much better. I'm really lucky to have you. Happy Birthday, my love 💕</p>";
+    hearts();
+}
+
+function hearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
