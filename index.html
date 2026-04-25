@@ -3,69 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <title>For My Favorite Person ❤️</title>
+
 <style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        font-family: 'Segoe UI', sans-serif;
-        overflow: hidden;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
 
-    .container {
-        text-align: center;
-        color: #fff;
-        max-width: 400px;
-    }
+.container {
+    text-align: center;
+    color: #fff;
+    max-width: 400px;
+}
 
-    h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
-    }
+h1 {
+    font-size: 2.5em;
+}
 
-    #text {
-        font-size: 1.2em;
-        min-height: 60px;
-    }
+p {
+    font-size: 1.1em;
+    line-height: 1.5;
+}
 
-    button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 20px;
-        background: white;
-        color: #ff5e78;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff5e78;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-    button:hover {
-        transform: scale(1.1);
-    }
+#noBtn {
+    position: absolute;
+}
 
-    #noBtn {
-        position: absolute;
-    }
+.hidden {
+    display: none;
+}
 
-    .hidden {
-        display: none;
-    }
+#gallery {
+    margin-top: 20px;
+}
 
-    .heart {
-        position: absolute;
-        color: white;
-        font-size: 20px;
-        animation: float 6s linear infinite;
-    }
+#photo {
+    width: 250px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
 
-    @keyframes float {
-        from { transform: translateY(100vh); opacity: 1; }
-        to { transform: translateY(-10vh); opacity: 0; }
-    }
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
+}
 </style>
 </head>
 
@@ -104,10 +109,37 @@ function moveNo() {
     btn.style.left = Math.random() * window.innerWidth + "px";
 }
 
+const photos = ["pic1.jpg", "pic2.jpg", "pic3.jpg"];
+let currentPhoto = 0;
+
+function startSlideshow() {
+    setInterval(() => {
+        currentPhoto = (currentPhoto + 1) % photos.length;
+        document.getElementById("photo").src = photos[currentPhoto];
+    }, 2000);
+}
+
 function yes() {
-    document.querySelector(".container").innerHTML =
-        "<h1>Di pwede mag no nu? alangan, dapat love ko nimo</h1><p>You make my life so much better. I'm really lucky to have you. Happy Birthday, my love 💕</p>";
+    document.querySelector(".container").innerHTML = `
+    <h1>There was never another option😜</h1>
+
+    <p>I joke around a lot, and you know I don’t always act serious… but when it comes to you, I mean every single word.</p>
+
+    <p>You somehow manage to be the sweetest person and the most chaotic at the same time—and I love every part of that. You make my days better without even trying, and even the random, messy, loud moments with you are the ones I wouldn’t trade for anything.</p>
+
+    <p>Being with you just feels right. No matter what kind of day I’m having, you make everything lighter just by being there.</p>
+
+    <p>I don’t say it enough, but I’m really, really grateful for you—for your love, your energy, and just you being you.</p>
+
+    <p>Happy birthday, my love ❤️<br>(and yeah… you’re still stuck with me 😜)</p>
+
+    <div id="gallery">
+        <img id="photo" src="pic1.jpg">
+    </div>
+    `;
+
     hearts();
+    startSlideshow();
 }
 
 function hearts() {
